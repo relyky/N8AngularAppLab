@@ -1,0 +1,25 @@
+
+<div class="container">
+  <h1>todos</h1>
+
+  <!-- ref:https://v17.angular.io/api/forms/NgForm#listening-for-form-submission -->
+  <form #refForm="ngForm" (ngSubmit)="handleSubmit(refForm)">
+    <input name="description" ngModel required />
+  </form>
+
+  <p *ngIf="dataSvc.f_loading"><em><span class="big-text">Loading...</span></em></p>
+
+  <ul>
+    <li *ngFor="let item of dataSvc.dataList">
+      <div class="todo">
+        {{item.sn}}
+        <div class="status-box" [ngClass]="{'done': item.done}" [ngSwitch]="item.done" (click)="handleToggleDone(item)">
+          <span *ngSwitchCase="true">[done]</span>
+          <span *ngSwitchDefault>[____]</span>
+        </div>
+        <span>{{item.description}}</span>
+        <button (click)="handleRemove(item)">X</button>
+      </div>
+    </li>
+  </ul>
+</div>

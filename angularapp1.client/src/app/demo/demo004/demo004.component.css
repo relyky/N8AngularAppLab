@@ -1,0 +1,17 @@
+.container {
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+div.todo {
+  text-align: left;
+}
+
+  div.todo .status-box {
+    display: inline-block;
+    width: 3em;
+  }
+
+    div.todo .status-box.done {
+      font-weight: bolder;
+    }

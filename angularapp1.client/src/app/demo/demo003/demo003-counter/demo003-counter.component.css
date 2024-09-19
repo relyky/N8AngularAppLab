@@ -1,0 +1,10 @@
+.wall {
+  border: solid 2px mediumvioletred;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.big-text {
+  font-size: 4em;
+  font-weight: bolder;
+}

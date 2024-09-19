@@ -1,0 +1,10 @@
+:host {
+    max-width: 1280px;
+    padding: 2rem;
+    text-align: center;
+}
+
+nav > a {
+  margin-left: .5rem;
+  margin-right: .5rem;
+}

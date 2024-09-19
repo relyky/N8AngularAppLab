@@ -1,0 +1,31 @@
+
+<div class="container">
+  <h1 id="tableLabel">Weather forecast</h1>
+
+  <p>This component demonstrates fetching data from the server.</p>
+
+  <button (click)="dataSvc.qryDataList()">刷新天氣資料</button>
+
+  <p *ngIf="dataSvc.errMsg" style="color:red;">{{dataSvc.errMsg}}</p>
+
+  <p *ngIf="dataSvc.f_loading"><em><span class="big-text">Loading...</span><br />Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationangular">https://aka.ms/jspsintegrationangular</a> for more details.</em></p>
+
+  <table [ngClass]="{'d-none':dataSvc.f_loading || dataSvc.errMsg}">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Temp. (C)</th>
+        <th>Temp. (F)</th>
+        <th>Summary</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of dataSvc.dataList">
+        <td>{{item.date}}</td>
+        <td>{{item.temperatureC}}</td>
+        <td>{{item.temperatureF}}</td>
+        <td>{{item.summary}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
