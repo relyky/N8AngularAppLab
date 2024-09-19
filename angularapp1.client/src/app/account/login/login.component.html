@@ -2,4 +2,37 @@
 <div class="container">
   <h1>登入</h1>
 
+  <div class="login-panel">
+    <form #refForm="ngForm" (ngSubmit)="handleSubmit(refForm)">
+      <div class="controller">
+        <label>帳號*</label>
+        <input name="userId" #userId="ngModel" ngModel required />
+        <span [hidden]="userId.valid || !userId.touched">格式錯誤或必填！</span>
+      </div>
+      <div class="controller">
+        <label>密碼*</label>
+        <input name="mima" type="password" #mima="ngModel" ngModel required />
+        <span [hidden]="mima.valid || !mima.touched">格式錯誤或必填！</span>
+      </div>
+      <div role="toolbar">
+        <button [disabled]="refForm.invalid || f_loading">登入</button>
+      </div>
+    </form>
+  </div>
+
+  <div *ngIf="infoMsg" role="alert" class="info">
+    {{infoMsg}}
+  </div>
+
+  <div *ngIf="errMsg" role="alert" class="error">
+    {{errMsg}}
+  </div>
+
+  <pre>
+Form value: {{refForm.value | json}}
+Form invalid:{{refForm.invalid}} touched:{{refForm.touched}} valid:{{refForm.valid}}
+Form #userId:{{userId.invalid}}-{{userId.touched}}-{{userId.valid}}:{{userId.errors | json}}
+Form   #mima:{{mima.invalid}}-{{mima.touched}}-{{mima.valid}}:{{mima.errors | json}}
+  </pre>
+
 </div>

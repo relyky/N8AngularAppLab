@@ -1,0 +1,32 @@
+
+.login-panel {
+  background-color: lightgray;
+  padding: 16px;
+  width: 300px;
+  margin: 0 auto;
+}
+
+form .controller {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  row-gap: 4px;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+form .controller > label {
+  width: 80px;
+  text-align: right;
+}
+
+form .controller > input {
+  flex: 1;
+}
+
+form .controller > span {
+  margin-left: 80px;
+  flex: 1;
+  color: orangered;
+  font-size: .8em;
+}

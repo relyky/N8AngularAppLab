@@ -26,3 +26,19 @@ div[role=toolbar] {
   justify-content: center;
   padding: .5em 1em; 
 }
+
+div[role=alert].info {
+  background-color: lightskyblue;
+  width: 600px;
+  margin: 12px auto;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+div[role=alert].error {
+  background-color: lightcoral;
+  width: 600px;
+  margin: 12px auto;
+  padding: 12px;
+  border-radius: 8px;
+}
