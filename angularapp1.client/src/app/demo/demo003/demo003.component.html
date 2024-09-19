@@ -1,11 +1,13 @@
 
-<div class="container">
-  <h3>DEMO003 父子元件通訊範例</h3>
+<div class="container" style="text-align:center;">
+  <h1>DEMO003 父子元件通訊範例</h1>
 
-  <label>
-    Interval:
-    <input type="number" [(ngModel)]="interval" placeholder="請輸入數值" />
-  </label>
+  <div role="toolbar">
+    <label>
+      Interval:
+      <input type="number" [(ngModel)]="interval" placeholder="請輸入數值" />
+    </label>
+  </div>
 
   <app-demo003-counter #refCounter [initialCount]="13" [interval]="interval" (onCountChange)="handleCountChange($event)" />
 

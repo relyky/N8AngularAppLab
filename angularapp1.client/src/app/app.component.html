@@ -1,17 +1,6 @@
 <!-- app.component.html -->
-<nav>
-  <a routerLink="/">Home</a>
-  <a routerLink="/auth">Auth</a>
-  <a routerLink="/demo001">DEMO 001</a>
-  <a routerLink="/demo002">DEMO 002</a>
-  <a routerLink="/demo003">DEMO 003</a>
-  <a routerLink="/demo004">DEMO 004</a>
 
-  <div style="float:right;">
-    <div>登入者:{{authSvc.loginUserId}}/{{authSvc.loginUserName}}</div>
-  </div>
-</nav>
-<hr />
+<app-banner></app-banner>
 
 <router-outlet></router-outlet>
 

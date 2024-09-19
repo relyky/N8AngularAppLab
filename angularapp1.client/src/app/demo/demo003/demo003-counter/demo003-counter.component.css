@@ -1,7 +1,9 @@
 .wall {
+  display: inline-block;
   border: solid 2px mediumvioletred;
   border-radius: 8px;
   padding: 8px;
+  text-align: center;
 }
 
 .big-text {

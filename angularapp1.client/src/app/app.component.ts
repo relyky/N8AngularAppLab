@@ -1,6 +1,4 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { AuthService } from './shared/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +7,7 @@ import { AuthService } from './shared/auth.service';
 })
 export class AppComponent {
 
-  constructor(private http: HttpClient, public authSvc: AuthService) {
+  constructor() {
     console.log('AppComponent constructor');
   }
 

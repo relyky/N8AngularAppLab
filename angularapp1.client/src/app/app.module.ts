@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { BannerComponent } from './banner/banner.component';
 import { AuthComponent } from './account/auth/auth.component';
 import { LoginComponent } from './account/login/login.component';
 import { Demo001Component } from './demo/demo001/demo001.component';
@@ -18,6 +19,7 @@ import { Demo004Component } from './demo/demo004/demo004.component';
   declarations: [
     AppComponent,
     HomeComponent,
+    BannerComponent,
     AuthComponent,
     LoginComponent,
     Demo001Component,

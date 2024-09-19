@@ -1,10 +1,12 @@
 
 <div class="container">
-  <h1 id="tableLabel">Weather forecast</h1>
+  <h1>Weather forecast</h1>
 
   <p>This component demonstrates fetching data from the server.</p>
 
-  <button (click)="dataSvc.qryDataList()">刷新天氣資料</button>
+  <div role="toolbar">
+    <button (click)="dataSvc.qryDataList()">刷新天氣資料</button>
+  </div>
 
   <p *ngIf="dataSvc.errMsg" style="color:red;">{{dataSvc.errMsg}}</p>
 

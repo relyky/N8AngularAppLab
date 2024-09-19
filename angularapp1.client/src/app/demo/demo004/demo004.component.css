@@ -5,9 +5,14 @@ div.todo {
 
   div.todo .status-box {
     display: inline-block;
-    width: 3em;
+    margin-right: .5em;
+    cursor: pointer;
   }
 
     div.todo .status-box.done {
       font-weight: bolder;
+    }
+
+    div.todo button{
+      margin: 0 .5em;
     }

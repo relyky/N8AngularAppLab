@@ -1,0 +1,15 @@
+
+header{
+  background-color: lightgray;
+  color: white;
+  padding: .5rem 0;
+}
+
+nav {
+  text-align: center;
+}
+
+nav > a {
+  margin-left: .5rem;
+  margin-right: .5rem;
+}
