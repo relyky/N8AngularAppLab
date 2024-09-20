@@ -83,7 +83,7 @@ public class AccountController(ILogger<AccountController> _logger, AccountServic
   /// </summary>
   [Authorize]
   [HttpPost("[action]")]
-  public async Task<ActionResult> Logout()
+  public ActionResult Logout()
   {
     // 登出
     _account.SignOut(HttpContext.User.Identity);

@@ -87,4 +87,18 @@ export class AuthService {
       throw err; //※一定要 throw 否則將判定為成功。
     }
   }
+
+  async logoutAsync() {
+    this._status = AuthStatus.Authing;
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this._authToken}`);
+    await firstValueFrom(this.http.post('api/Account/Logout', null, { headers }));
+
+    //// 不論登出成功與否，都要 reset auth status
+    //// reset auth status
+    //this._loginUserId = '';
+    //this._loginUserName = '來賓';
+    //this._status = AuthStatus.Guest;
+    //this._authToken = undefined;
+    //this._expiredTime = undefined;
+  }
 }

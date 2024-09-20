@@ -1,5 +1,7 @@
+using AngularApp1.Server.Models;
 using AngularApp1.Server.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using N8ReactAppTpl.Server.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +20,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     option.SaveToken = true;
     option.TokenValidationParameters = jwtTokenValidationParameters;
   });
+
+// To customize JwtBearer checking
+builder.Services.AddSingleton<IAuthorizationMiddlewareResultHandler, CustomAuthorizationMiddlewareResultHandler>();
 
 builder.Services.AddSingleton(jwtTokenValidationParameters);
 

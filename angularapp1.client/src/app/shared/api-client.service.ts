@@ -3,39 +3,64 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiClientService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authSvc: AuthService) { }
 
   /// Query or Get
   getData<T>(url: string): Observable<T> {
-    return this.http.get<T>(url);
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    if (this.authSvc.isAuthed && this.authSvc.authToken) {
+      headers = headers.set('Authorization', `Bearer ${this.authSvc.authToken}`);
+    }
+
+    return this.http.get<T>(url, { headers });
   }
 
   /// Add or Post
   postData<T>(url: string, args: object): Observable<T> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
     });
+
+    if (this.authSvc.isAuthed && this.authSvc.authToken) {
+      headers = headers.set('Authorization', `Bearer ${this.authSvc.authToken}`);
+    }
 
     return this.http.post<T>(url, args, { headers });
   }
 
   /// Update or Put
   putData<T>(url: string, args: T): Observable<T> {
-    const headers = new HttpHeaders({
+    let headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
+
+    if (this.authSvc.isAuthed && this.authSvc.authToken) {
+      headers = headers.set('Authorization', `Bearer ${this.authSvc.authToken}`);
+    }
 
     return this.http.put<T>(url, args, { headers });
   }
 
   /// Delete
   delData(url: string) {
-    return this.http.delete(url);
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    if (this.authSvc.isAuthed && this.authSvc.authToken) {
+      headers = headers.set('Authorization', `Bearer ${this.authSvc.authToken}`);
+    }
+
+    return this.http.delete(url, { headers });
   }
 }

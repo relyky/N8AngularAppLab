@@ -9,7 +9,10 @@
     <a routerLink="/demo004">DEMO 004</a>
 
     <div style="float:right;">
-      <a routerLink="/login">登入</a>
+      <a routerLink="/login" style="margin-right:8px;">登入</a>
+
+      <button (click)="handleLogout()" style="margin-right:8px;">登出</button>
+
       <div style="display:inline-block;">登入者:{{authSvc.loginUserId}}/{{authSvc.loginUserName}}</div>
     </div>
   </nav>

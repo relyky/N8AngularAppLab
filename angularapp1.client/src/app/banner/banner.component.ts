@@ -9,4 +9,7 @@ import { AuthService } from '../shared/auth.service';
 export class BannerComponent {
   constructor(public authSvc: AuthService) { }
 
+  handleLogout() {
+    this.authSvc.logoutAsync();
+  }
 }
