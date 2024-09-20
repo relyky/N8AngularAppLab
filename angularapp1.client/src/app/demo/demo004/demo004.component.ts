@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Demo004DataService } from './demo004-data.service';
 import { Todo } from './demo004-dto';
+import { AuthService } from '../../shared/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-demo004',
@@ -9,10 +11,17 @@ import { Todo } from './demo004-dto';
   styleUrl: './demo004.component.css'
 })
 export class Demo004Component {
-  constructor(public dataSvc: Demo004DataService) { }
+  constructor(private authSvc: AuthService, private router: Router, public dataSvc: Demo004DataService) { }
 
   ngOnInit() {
-    console.log('Demo004Component ngOninit');
+    // 發現未登入則導向登入頁
+    if (!this.authSvc.isAuthed) {
+      alert('未登入！將自動導向登入頁...');
+      this.router.navigate(['/login'])
+      return;
+    }
+
+    // 畫面一開始就取得資料
     this.dataSvc.qryDataList();
   }
 

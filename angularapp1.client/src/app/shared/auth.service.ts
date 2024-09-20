@@ -1,4 +1,8 @@
 import { Injectable } from '@angular/core';
+import { ILoginArgs, IAccessTokenResult, ILoginUserInfo } from '../dto/accountDto';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
+import { formatISO } from 'date-fns';
 
 enum AuthStatus {
   Guest = "Guest",
@@ -6,7 +10,7 @@ enum AuthStatus {
   Authed = "Authed"
 }
 
-interface AccountState {
+export interface AccountState {
   loginUserId: string
   loginUserName: string
   status: AuthStatus
@@ -45,5 +49,42 @@ export class AuthService {
     return this._expiredTime;
   }
 
-  constructor() { }  
+  get isAuthed(): boolean {
+    return this._status === AuthStatus.Authed && this._expiredTime && formatISO(this._expiredTime) > formatISO(new Date()) || false;
+  }
+
+
+  constructor(private http: HttpClient) { }
+
+  async loginAsync(args: ILoginArgs) {
+    try {
+      this._status = AuthStatus.Authing;
+      const tokenResult = await firstValueFrom(this.http.post<IAccessTokenResult>('api/Account/Login', args));
+
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${tokenResult.authToken}`);
+      const userInfo = await firstValueFrom(this.http.post<ILoginUserInfo>('api/Account/GetLoginUser', null, { headers }));
+
+      // setup auth status
+      this._loginUserId = userInfo.loginUserId;
+      this._loginUserName = userInfo.loginUserName;
+      this._status = AuthStatus.Authed;
+      this._authToken = tokenResult.authToken;
+      this._expiredTime = tokenResult.expiredTime;
+    }
+    catch (err) {
+      console.error('登入失敗！', err);
+
+      // reset auth status
+      this._loginUserId = '';
+      this._loginUserName = '來賓';
+      this._status = AuthStatus.Guest;
+      this._authToken = undefined;
+      this._expiredTime = undefined;
+
+      //if (err instanceof ResponseError)
+      //  alert(`登入失敗！ ${err.status} ${err.statusText}`);
+
+      throw err; //※一定要 throw 否則將判定為成功。
+    }
+  }
 }

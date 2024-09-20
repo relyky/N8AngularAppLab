@@ -11,6 +11,10 @@
   border: solid 1px darkgray;
 }
 
+.d-none {
+  display: none !important;
+}
+
 h1 {
   text-align: center;
 }

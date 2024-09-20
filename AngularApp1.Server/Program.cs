@@ -1,13 +1,38 @@
-var builder = WebApplication.CreateBuilder(args);
+using AngularApp1.Server.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using N8ReactAppTpl.Server.Models;
 
-// Add services to the container.
+var builder = WebApplication.CreateBuilder(args);
+var _config = builder.Configuration;
+
+//## for Authentication & Authorization
+// for JwtBearer Auth
+var jwtTokenValidationParameters = JwtAuthenticationTool.GenerateTokenValidationParameters(_config);
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+  .AddJwtBearer(option =>
+  {
+#if DEBUG
+    option.RequireHttpsMetadata = false;
+#endif
+    option.SaveToken = true;
+    option.TokenValidationParameters = jwtTokenValidationParameters;
+  });
+
+builder.Services.AddSingleton(jwtTokenValidationParameters);
+
+// Add services to the container. --------------------------------------------------
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
+builder.Services.AddMemoryCache();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddSingleton<AccountService>();
+
+var app = builder.Build(); //--------------------------------------------------
 
 app.UseDefaultFiles();
 app.UseStaticFiles();
@@ -21,6 +46,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+//## for Authentication & Authorization
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

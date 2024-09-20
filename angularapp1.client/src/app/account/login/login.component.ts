@@ -1,24 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-
-export interface IAccessTokenResult {
-  expiredTime: Date;
-  authToken: string;
-}
-
-export interface ILoginArgs {
-  userId: string;
-  credential: string;
-  vcode: string;
-}
-
-export interface ILoginUserInfo {
-  loginUserId: string;
-  loginUserName: string;
-  expiredTime: Date;
-}
-
-//--------------------------------------------------------
+import { AuthService } from '../../shared/auth.service';
+import { ILoginArgs } from '../../dto/accountDto';
 
 @Component({
   selector: 'app-login',
@@ -30,19 +13,26 @@ export class LoginComponent {
   public errMsg?: string;
   public infoMsg?: string;
 
+  constructor(public authSvc: AuthService) { }
+
   handleSubmit(refForm: NgForm) {
     this.f_loading = true;
     this.errMsg = undefined;
     this.infoMsg = undefined;
+
     if (refForm.invalid) {
       this.errMsg = 'Invalid form';
       this.f_loading = false;
       return;
     }
 
-    else {
-      this.infoMsg = 'Form is valid';
-      this.f_loading = false;
-    }
+    // Form is valid
+    const loginArgs: ILoginArgs = {
+      userId: refForm.value['userId'],
+      credential: refForm.value['mima'],
+      vcode: '123456'
+    };
+
+    this.authSvc.loginAsync(loginArgs);
   }
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../shared/auth.service';
+import { formatISO } from 'date-fns'
 
 @Component({
   selector: 'app-auth',
@@ -7,5 +8,7 @@ import { AuthService } from '../../shared/auth.service';
   styleUrl: './auth.component.css'
 })
 export class AuthComponent {
+  public now: string = formatISO(new Date());
+
   constructor(public authSvc: AuthService) { }
 }
