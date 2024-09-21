@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Demo003CounterComponent } from './demo003-counter/demo003-counter.component';
 
 @Component({
@@ -7,6 +7,8 @@ import { Demo003CounterComponent } from './demo003-counter/demo003-counter.compo
   styleUrl: './demo003.component.css'
 })
 export class Demo003Component {
+  @ViewChild('refCounter') refCounter!: Demo003CounterComponent; // ElementRef
+
   message: string = '';
   interval: number = 3;
 
@@ -14,7 +16,7 @@ export class Demo003Component {
     this.message = `Count changed to: ${count}`;
   }
 
-  resetCount(refCounter: Demo003CounterComponent) {
-    refCounter.reset();
+  resetCount() {
+    this.refCounter.reset();
   }
 }

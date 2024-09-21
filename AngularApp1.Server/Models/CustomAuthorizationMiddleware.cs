@@ -11,7 +11,7 @@ namespace AngularApp1.Server.Models;
 /// ※ 加入 DI 註冊時需用 Singleton 模式。
 /// ref → [自訂 AuthorizationMiddleware 的行為。](https://learn.microsoft.com/zh-tw/aspnet/core/security/authorization/customizingauthorizationmiddlewareresponse?view=aspnetcore-8.0)
 /// </summary>
-public class CustomAuthorizationMiddlewareResultHandler(
+public class CustomAuthorizationMiddleware(
   AccountService _accountSvc
   ) : IAuthorizationMiddlewareResultHandler
 {
