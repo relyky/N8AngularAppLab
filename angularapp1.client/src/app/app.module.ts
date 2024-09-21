@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
@@ -14,6 +14,7 @@ import { Demo002Component } from './demo/demo002/demo002.component';
 import { Demo003Component } from './demo/demo003/demo003.component';
 import { Demo003CounterComponent } from './demo/demo003/demo003-counter/demo003-counter.component';
 import { Demo004Component } from './demo/demo004/demo004.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,12 @@ import { Demo004Component } from './demo/demo004/demo004.component';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
