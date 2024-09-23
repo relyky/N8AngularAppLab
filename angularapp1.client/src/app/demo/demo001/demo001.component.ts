@@ -1,10 +1,9 @@
 import { Component, SimpleChanges } from '@angular/core';
 
 @Component({
-    selector: 'app-demo001',
-    templateUrl: './demo001.component.html',
-    styleUrl: './demo001.component.css',
-    standalone: true
+  selector: 'app-demo001',
+  templateUrl: './demo001.component.html',
+  styleUrl: './demo001.component.css'
 })
 export class Demo001Component {
   public counter: number = 0;

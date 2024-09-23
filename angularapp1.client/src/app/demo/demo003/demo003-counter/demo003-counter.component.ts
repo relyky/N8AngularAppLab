@@ -1,10 +1,9 @@
 import { Component, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 
 @Component({
-    selector: 'app-demo003-counter',
-    templateUrl: './demo003-counter.component.html',
-    styleUrl: './demo003-counter.component.css',
-    standalone: true
+  selector: 'app-demo003-counter',
+  templateUrl: './demo003-counter.component.html',
+  styleUrl: './demo003-counter.component.css'
 })
 export class Demo003CounterComponent {
   @Input() initialCount: number = 10;
