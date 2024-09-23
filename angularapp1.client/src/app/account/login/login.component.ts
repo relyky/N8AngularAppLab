@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormsModule } from '@angular/forms';
 import { AuthService } from '../../shared/auth.service';
 import { ILoginArgs } from '../../dto/accountDto';
+import { NgIf, NgClass, JsonPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrl: './login.component.css',
+    standalone: true,
+    imports: [NgIf, NgClass, FormsModule, JsonPipe]
 })
 export class LoginComponent {
   public f_loading: boolean = false;

@@ -1,14 +1,17 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormsModule } from '@angular/forms';
 import { Demo004DataService } from './demo004-data.service';
 import { Todo } from './demo004-dto';
 import { AuthService } from '../../shared/auth.service';
 import { Router } from '@angular/router';
+import { NgIf, NgFor, NgClass, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
 
 @Component({
-  selector: 'app-demo004',
-  templateUrl: './demo004.component.html',
-  styleUrl: './demo004.component.css'
+    selector: 'app-demo004',
+    templateUrl: './demo004.component.html',
+    styleUrl: './demo004.component.css',
+    standalone: true,
+    imports: [FormsModule, NgIf, NgFor, NgClass, NgSwitch, NgSwitchCase, NgSwitchDefault]
 })
 export class Demo004Component {
   constructor(private authSvc: AuthService, private router: Router, public dataSvc: Demo004DataService) { }

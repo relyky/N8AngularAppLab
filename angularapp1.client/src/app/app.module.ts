@@ -17,31 +17,29 @@ import { Demo004Component } from './demo/demo004/demo004.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    BannerComponent,
-    AuthComponent,
-    LoginComponent,
-    Demo001Component,
-    Demo002Component,
-    Demo003Component,
-    Demo003CounterComponent,
-    Demo004Component,
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    FormsModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: !isDevMode(),
-      // Register the ServiceWorker as soon as the application is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
-    }),
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [AppComponent],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        AppRoutingModule,
+        FormsModule,
+        ServiceWorkerModule.register('ngsw-worker.js', {
+            enabled: !isDevMode(),
+            // Register the ServiceWorker as soon as the application is stable
+            // or after 30 seconds (whichever comes first).
+            registrationStrategy: 'registerWhenStable:30000'
+        }),
+        HomeComponent,
+        BannerComponent,
+        AuthComponent,
+        LoginComponent,
+        Demo001Component,
+        Demo002Component,
+        Demo003Component,
+        Demo003CounterComponent,
+        Demo004Component,
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
