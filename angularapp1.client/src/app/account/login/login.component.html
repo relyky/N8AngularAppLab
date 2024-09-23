@@ -2,7 +2,7 @@
 <div class="container">
   <h1>登入 <small>{{authSvc.status}}</small></h1>
   
-  <div *ngIf="authSvc.status === 'Authing'">Authing a</div>
+  <div *ngIf="authSvc.status === 'Authing'">Authing</div>
 
   <div *ngIf="authSvc.status === 'Authed'">
     已成功登入，歡迎 {{authSvc.loginUserName}}。
