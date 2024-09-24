@@ -15,6 +15,7 @@ import { Demo003Component } from './demo/demo003/demo003.component';
 import { Demo003CounterComponent } from './demo/demo003/demo003-counter/demo003-counter.component';
 import { Demo004Component } from './demo/demo004/demo004.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { PageNotFoundComponent } from './page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     Demo003Component,
     Demo003CounterComponent,
     Demo004Component,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
