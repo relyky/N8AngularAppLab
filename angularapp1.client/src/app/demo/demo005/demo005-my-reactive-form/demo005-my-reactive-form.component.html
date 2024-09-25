@@ -1,2 +1,40 @@
 <h3>demo005-my-reactive-form works!</h3>
 
+<form [formGroup]="myForm" (ngSubmit)="handleSubmit()">
+  <!-- Form controls... -->
+  <input formControlName="name" />
+  <span role="alert" *ngIf="myForm.controls['name'].invalid">
+    {{myForm.controls['name'].errors | json}}
+  </span>
+  <input formControlName="email" />
+  <span role="alert" *ngIf="myForm.controls['email'].invalid">
+    {{myForm.controls['email'].errors | json}}
+  </span>
+  <input formControlName="salary" type="number" />
+  <span role="alert" *ngIf="myForm.controls['salary'].invalid">
+    {{myForm.controls['salary'].errors | json}}
+  </span>
+
+  <button type="submit" [disabled]="myForm.invalid">送出</button>
+  <button type="button" (click)="handleReset()">重設</button>
+  <button type="button" (click)="handleWatch()">監看</button>
+</form>
+
+<pre>
+表單狀態: {{myForm.status}} - {{myForm.valid ? 'valid' : 'invalid'}} - {{myForm.touched ? 'touched' : ''}}
+表單內容: {{myForm.value | json}}
+</pre>
+
+<hr />
+<h3>也可以單欄位一一控制 with FormControl</h3>
+<label>單欄位</label>
+<input [formControl]="myField" />
+<span role="alert" *ngIf="myField.invalid">
+  {{myField.errors | json}}
+</span>
+
+
+<pre>
+單欄位狀態: {{myField.status}} - {{myField.valid ? 'valid' : 'invalid'}} - {{myField.touched ? 'touched' : ''}}
+單欄位內容: {{myField.value}}
+</pre>

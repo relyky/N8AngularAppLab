@@ -1,6 +1,6 @@
 <h3>demo005-my-template-form works!</h3>
 
-<form #refMyForm="ngForm" (ngSubmit)="handleMyFormSubmit(refMyForm)" (ngReset)="">
+<form #refMyForm="ngForm" (ngSubmit)="handleMyFormSubmit(refMyForm)">
   <label>
     Field A
     <input #fieldA="ngModel" name="fieldA" ngModel [ngModel]="'這是初始值'" required />
