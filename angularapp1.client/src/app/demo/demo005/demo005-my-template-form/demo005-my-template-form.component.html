@@ -1,1 +1,22 @@
-<p>demo005-my-template-form works!</p>
+<h3>demo005-my-template-form works!</h3>
+
+<form #refMyForm="ngForm" (ngSubmit)="handleMyFormSubmit(refMyForm)" (ngReset)="">
+  <label>
+    Field A
+    <input #fieldA="ngModel" name="fieldA" ngModel [ngModel]="'這是初始值'" required />
+  </label>
+  <span role="alert" [hidden]="fieldA.valid || !fieldA.touched">格式錯誤或必填！</span>
+
+  <label>
+    Field B
+    <input #fieldB="ngModel" name="fieldB" ngModel type="number" [ngModel]="16888" required />
+  </label>
+  <span role="alert" [hidden]="fieldB.valid || !fieldB.touched">格式錯誤或必填！</span>
+
+  <div>
+    <button type="submit" [disabled]="refMyForm.invalid">送出</button>
+    <button type="reset">重設</button>
+  </div>
+</form>
+
+<pre>表單內容:{{myFormData | json}}</pre>

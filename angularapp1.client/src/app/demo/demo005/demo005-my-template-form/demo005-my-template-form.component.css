@@ -1,0 +1,12 @@
+.d-none {
+  display: none;
+}
+
+span[role=alert] {
+  font-size: .8em;
+  color: orangered;
+}
+
+  span[role=alert]::before {
+    content: "⚠ ";
+  }
