@@ -1,0 +1,25 @@
+<h1>Angular Input &Aacute; Binding</h1>
+<h2>events up</h2>
+
+<button (click)="handleClick($event)">點我</button>
+<p>點擊訊息: {{clickInfo | json}}</p>
+
+<div [hidden]="f_hidden">看我看我</div>
+
+<hr />
+
+<h2>輸入</h2>
+
+<label>
+  測試雙向輸入
+  <input [(ngModel)]="fooValue" />
+</label>
+<p>雙向輸入值: {{fooValue}}</p>
+
+<label>
+  測試單向輸入
+  <input [ngModel]="barValue" (ngModelChange)="handleBarChange($event)" />
+</label>
+<p>單向輸入值: {{barValue}}</p>
+
+
