@@ -17,6 +17,8 @@ import { Demo004Component } from './demo/demo004/demo004.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { PageNotFoundComponent } from './page-not-found.component';
 import { Demo005Component } from './demo/demo005/demo005.component';
+import { Demo005MyReactiveFormComponent } from './demo/demo005/demo005-my-reactive-form/demo005-my-reactive-form.component';
+import { Demo005MyTemplateFormComponent } from './demo/demo005/demo005-my-template-form/demo005-my-template-form.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { Demo005Component } from './demo/demo005/demo005.component';
     Demo004Component,
     PageNotFoundComponent,
     Demo005Component,
+    Demo005MyReactiveFormComponent,
+    Demo005MyTemplateFormComponent,
   ],
   imports: [
     BrowserModule,

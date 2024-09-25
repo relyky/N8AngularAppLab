@@ -22,4 +22,28 @@
 </label>
 <p>單向輸入值: {{barValue}}</p>
 
+<label>
+  設定初始值
+  <input [ngModel]="bazValue" [disabled]="true" />
+</label>
+<p>設定初始值: {{bazValue}}</p>
+
+<hr />
+
+<h2>Element Reference</h2>
+
+<div>
+  <div #refMyElement>將會被改變</div>
+  <input #refMyInput [ngModel]="'這是初始值'" />
+</div>
+
+<button (click)="handleSomething()">Do something</button>
+
+<h2>表單輸入 - Template-driven Forms</h2>
+
+<app-demo005-my-template-form></app-demo005-my-template-form>
+
+<h2>表單輸入 - Reactive Forms</h2>
+
+<app-demo005-my-reactive-form></app-demo005-my-reactive-form>
 
