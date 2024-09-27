@@ -55,6 +55,7 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
+//## Endpoints
 app.MapControllers();
 
 app.MapFallbackToFile("/index.html");
