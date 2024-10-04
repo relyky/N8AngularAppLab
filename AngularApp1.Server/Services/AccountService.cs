@@ -139,7 +139,7 @@ public class AccountService(ILogger<AccountService> _logger, IConfiguration _con
   /// <summary>
   /// 依授權資料生成權杖
   /// </summary>
-  internal (string JwtToken, DateTimeOffset expiresUtc) GenerateJwtToken(AuthUser auth, double expiresMinutes = 20d)
+  internal (string JwtToken, DateTimeOffset expiresUtc) GenerateJwtToken(AuthUser auth, double expiresMinutes)
   {
     var jwtTool = new JwtAuthenticationTool(_config);
 
@@ -150,7 +150,7 @@ public class AccountService(ILogger<AccountService> _logger, IConfiguration _con
     userIdentity.AddClaim(new Claim(ClaimTypes.Sid, auth.AuthGuid.ToString()));
     userIdentity.AddClaims(auth.Roles.Select(role => new Claim(ClaimTypes.Role, role)));
 
-    DateTimeOffset expiresUtc = DateTimeOffset.UtcNow.AddMinutes(20d);
+    DateTimeOffset expiresUtc = DateTimeOffset.UtcNow.AddMinutes(expiresMinutes);
     string jwtToken = jwtTool.MakeToken(userIdentity, expiresUtc);
 
     return (jwtToken, expiresUtc);

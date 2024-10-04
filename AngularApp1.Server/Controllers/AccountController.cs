@@ -11,14 +11,28 @@ using Microsoft.Extensions.Caching.Memory;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using N8ReactAppTpl.Server.Models;
+using Microsoft.AspNetCore.Antiforgery;
 
 namespace AngularApp1.Server.Controllers;
 
 [AllowAnonymous]
 [Route("api/[controller]")]
 [ApiController]
-public class AccountController(ILogger<AccountController> _logger, AccountService _account) : ControllerBase
+public class AccountController(
+  IAntiforgery _antiforgery,
+  AccountService _account,
+  ILogger<AccountController> _logger
+  ) : ControllerBase
 {
+  [IgnoreAntiforgeryToken]
+  [HttpPost("[action]")]
+  public IActionResult GetAntiForgeryToken()
+  {
+    var tokens = _antiforgery.GetAndStoreTokens(HttpContext);
+    return new ObjectResult(new { token = tokens.RequestToken });
+  }
+
+  [ValidateAntiForgeryToken]
   [HttpPost("[action]")]
   public async Task<ActionResult<AccessTokenResult>> Login(LoginArgs login)
   {
@@ -37,7 +51,7 @@ public class AccountController(ILogger<AccountController> _logger, AccountServic
       if (auth == null)
         return Unauthorized();
 
-      var token = _account.GenerateJwtToken(auth);
+      var token = _account.GenerateJwtToken(auth, 20d);
 
       _logger.LogInformation($"RequestAccessToken[{auth.UserId}].");
       return Ok(new AccessTokenResult

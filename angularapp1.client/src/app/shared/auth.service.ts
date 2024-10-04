@@ -101,4 +101,16 @@ export class AuthService {
     this._authToken = undefined;
     this._expiredTime = undefined;
   }
+
+  //getAntiForgeryToken(): void {
+  //  this.http.post<{ token: string }>('/api/Account/GetAntiForgeryToken', null)
+  //    .subscribe(response => {
+  //      localStorage.setItem('X-CSRF-TOKEN', response.token);
+  //    });
+  //}
+
+  async getAntiForgeryTokenAsync(): Promise<void> {
+    const response = await firstValueFrom(this.http.post<{ token: string }>('api/Account/GetAntiForgeryToken', null));
+    localStorage.setItem('X-CSRF-TOKEN', response.token);
+  }
 }

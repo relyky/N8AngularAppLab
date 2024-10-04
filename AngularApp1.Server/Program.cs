@@ -8,6 +8,19 @@ var builder = WebApplication.CreateBuilder(args);
 var _config = builder.Configuration;
 
 //## for Authentication & Authorization
+
+// for Antiforgery
+builder.Services.AddAntiforgery(options =>
+{
+  options.HeaderName = "X-CSRF-TOKEN"; // 預設: "RequestVerificationToken"
+  options.FormFieldName = "__RequestVerificationToken";
+  //options.Cookie.Name = "X-CSRF-TOKEN"; // 預設為亂數
+  options.Cookie.HttpOnly = true;
+  options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+  options.Cookie.MaxAge = null;
+  options.SuppressXFrameOptionsHeader = false;
+});
+
 // for JwtBearer Auth
 var jwtTokenValidationParameters = JwtAuthenticationTool.GenerateTokenValidationParameters(_config);
 
@@ -28,7 +41,9 @@ builder.Services.AddSingleton(jwtTokenValidationParameters);
 
 // Add services to the container. --------------------------------------------------
 
-builder.Services.AddControllers();
+//※ 用 AddControllersWithViews 才支援 AntiForgery 機制。
+builder.Services.AddControllersWithViews();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

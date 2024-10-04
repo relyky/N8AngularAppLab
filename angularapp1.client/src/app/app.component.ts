@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './shared/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -6,15 +7,14 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+  title = '我的 AngularApp1';
 
-  constructor() {
+  constructor(private authSvc: AuthService) {
     console.log('AppComponent constructor');
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     console.log('AppComponent ngOninit');
+    await this.authSvc.getAntiForgeryTokenAsync();
   }
-
-  //title = 'AngularApp1.Client';
-  title = '我的 AngularApp1';
 }
