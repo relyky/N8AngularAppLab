@@ -110,7 +110,8 @@ export class AuthService {
   //}
 
   async getAntiForgeryTokenAsync(): Promise<void> {
-    const response = await firstValueFrom(this.http.post<{ token: string }>('api/Account/GetAntiForgeryToken', null));
+    const response = await firstValueFrom(this.http.post<{ token: string }>('api/Account/GetAntiForgeryToken', null));    
     localStorage.setItem('X-CSRF-TOKEN', response.token);
+    console.log('getAntiForgeryTokenAsync', 'got anti');
   }
 }
